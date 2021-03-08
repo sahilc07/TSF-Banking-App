@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1009401895092",
+    "project_id": "banking-app-7b91d",
+    "storage_bucket": "banking-app-7b91d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009401895092:android:40cfa1edf9128b8e0edfe1",
+        "android_client_info": {
+          "package_name": "com.sahil.bankingApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1009401895092-cbns3blps0agore5uao27s3o2vi3h8b2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKQ8BvBZZ3NJswRsA4SWn6h2-y9quBdHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1009401895092-cbns3blps0agore5uao27s3o2vi3h8b2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1009401895092-9rim0gubd73tlfhafvsuea4hbop2dt96.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sahil.bankingApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

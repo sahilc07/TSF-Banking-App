@@ -2,6 +2,9 @@ import 'package:banking_app/Modules/CustomerCard.dart';
 import 'package:banking_app/screens/transactions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:banking_app/Modules/TransferField.dart';
+import 'package:banking_app/Modules/GradientButton.dart';
 
 class MoneyTransfer extends StatefulWidget {
   MoneyTransfer({this.name, this.balance});
@@ -19,11 +22,12 @@ class _MoneyTransferState extends State<MoneyTransfer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: NewGradientAppBar(
         title: Text(
           "Money Transfer",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        gradient: LinearGradient(colors: [Colors.blue, Colors.purple]),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -100,7 +104,7 @@ class _MoneyTransferState extends State<MoneyTransfer> {
                   controller: _accountController,
                   hint: "To: Account Number",
                   icon: Icon(
-                    Icons.person_rounded,
+                    Icons.account_circle,
                   ),
                   val: "Account Number cannot be empty"),
             ),
@@ -123,72 +127,26 @@ class _MoneyTransferState extends State<MoneyTransfer> {
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: ButtonTheme(
-                height: 50.0,
-                minWidth: double.infinity,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Transactions(
-                          customerName: widget.name,
-                          receiverName: selectedUser,
-                          account: int.parse(_accountController.text),
-                          balance: int.parse(_balanceController.text),
-                        ),
+              child: GradientButton(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Transactions(
+                        customerName: "${widget.name}",
+                        receiverName: selectedUser,
+                        balance: _balanceController.text,
+                        account: _accountController.text,
                       ),
-                    );
-                  },
-                  elevation: 5.0,
-                  child: Text(
-                    "Transfer",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  color: Colors.blue,
-                ),
+                    ),
+                  );
+                },
+                text: "Transfer",
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class TransferField extends StatelessWidget {
-  TransferField({this.controller, this.hint, this.icon, this.val});
-
-  final TextEditingController controller;
-  final String hint;
-  final Icon icon;
-  final String val;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        icon: icon,
-        hintText: hint,
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
-            borderSide: BorderSide(
-              color: Colors.blue,
-            )),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-      ),
-      validator: (value) {
-        if (value.isEmpty) {
-          return val;
-        } else {
-          return null;
-        }
-      },
     );
   }
 }

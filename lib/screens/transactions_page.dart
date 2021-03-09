@@ -3,6 +3,8 @@ import 'package:banking_app/screens/all_customers.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:banking_app/Modules/GradientButton.dart';
 
 class Transactions extends StatefulWidget {
   Transactions(
@@ -26,11 +28,12 @@ class _TransactionsState extends State<Transactions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: NewGradientAppBar(
         title: Text(
           "Transaction Details",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        gradient: LinearGradient(colors: [Colors.blue, Colors.purple]),
       ),
       body: FutureBuilder(
         future: getUsers(),
@@ -56,7 +59,7 @@ class _TransactionsState extends State<Transactions> {
                         Icon(
                           Icons.thumb_up,
                           color: Colors.blue,
-                          size: 80.0,
+                          size: 100.0,
                         ),
                         SizedBox(
                           height: 20.0,
@@ -96,35 +99,22 @@ class _TransactionsState extends State<Transactions> {
                         ),
                         CustomerCard(
                           text: "To A/C: ${widget.account}",
-                          icon: Icon(Icons.person_rounded),
+                          icon: Icon(Icons.account_circle),
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         CustomerCard(
                           text: "Amount: ${widget.balance}",
-                          icon: Icon(Icons.person_rounded),
+                          icon: Icon(Icons.account_balance_wallet_rounded),
                         ),
                         SizedBox(
                           height: 20.0,
                         ),
-                        ButtonTheme(
-                          minWidth: double.infinity,
-                          height: 50.0,
-                          child: Padding(
+                        Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: RaisedButton(
-                              child: Text(
-                                'Done',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                              color: Colors.blue,
-                              elevation: 5.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              onPressed: () {
+                            child: GradientButton(
+                              onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -136,9 +126,8 @@ class _TransactionsState extends State<Transactions> {
                                   ),
                                 );
                               },
-                            ),
-                          ),
-                        ),
+                              text: "Done",
+                            )),
                       ],
                     ),
                   );

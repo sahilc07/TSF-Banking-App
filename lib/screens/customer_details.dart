@@ -1,6 +1,8 @@
 import 'package:banking_app/screens/money_transfer.dart';
 import 'package:flutter/material.dart';
 import 'package:banking_app/Modules/CustomerCard.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:banking_app/Modules/GradientButton.dart';
 
 class CustomerDetails extends StatefulWidget {
   CustomerDetails({this.name, this.phone, this.account, this.balance});
@@ -17,11 +19,12 @@ class _CustomerDetailsState extends State<CustomerDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: NewGradientAppBar(
         title: Text(
           'Customer Details',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        gradient: LinearGradient(colors: [Colors.blue, Colors.purple]),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -59,29 +62,19 @@ class _CustomerDetailsState extends State<CustomerDetails> {
             Padding(
               padding:
                   const EdgeInsets.only(top: 30.0, left: 10.0, right: 10.0),
-              child: ButtonTheme(
-                height: 50.0,
-                minWidth: double.infinity,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MoneyTransfer(
-                            name: "${widget.name}",
-                            balance: "${widget.balance}",
-                          ),
-                        ));
-                  },
-                  elevation: 5.0,
-                  child: Text(
-                    "Transfer Money",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  color: Colors.blue,
-                ),
+              child: GradientButton(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MoneyTransfer(
+                        name: "${widget.name}",
+                        balance: "${widget.balance}",
+                      ),
+                    ),
+                  );
+                },
+                text: "Money Transfer",
               ),
             ),
           ],

@@ -2,6 +2,7 @@ import 'package:banking_app/screens/customer_details.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 
 class AllUsers extends StatefulWidget {
   AllUsers({this.balance, this.customerName, this.receiverName});
@@ -23,11 +24,12 @@ class _AllUsersState extends State<AllUsers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar: NewGradientAppBar(
           title: Text(
             "All Customers",
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
+          gradient: LinearGradient(colors: [Colors.blue, Colors.purple]),
         ),
         body: Container(
           child: FutureBuilder(
